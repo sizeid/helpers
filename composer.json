@@ -1,0 +1,24 @@
+{
+  "name": "sizeid/helpers",
+  "description": "SizeID helpers",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jakub Filla",
+      "email": "jakub.filla@wavevision.cz",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "sizeid/oauth2": "^1.0",
+    "latte/latte": "^2.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "SizeID\\Helpers\\": "src/"
+    }
+  },
+  "require-dev": {
+    "tracy/tracy": "^2.4"
+  }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+          integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container" style="padding-top: 50px;">
+    <h1>SizeID Helpers</h1>
+    <form>
+
+        <div class="form-group">
+            <label for="sizeChart">Select size chart</label>
+            <select name="sizeChart" class="form-control">
+                <option n:foreach="$sizeCharts as $value => $label" value="{$value}">{$label}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="button">Select button style</label>
+            <select name="button" class="form-control">
+                <option n:foreach="$buttons as $value => $label" value="{$value}">{$label}</option>
+            </select>
+
+        </div>
+        <div class="form-group">
+
+            <button type="submit" value="confirm" class="form-control btn btn-primary">Show SizeID button</button>
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

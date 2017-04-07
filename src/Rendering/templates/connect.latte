@@ -1,0 +1,7 @@
+<script id="SizeID-script"
+        src="//connect.sizeid.com"
+        data-sizeid-identity-key="{$connect->getIdentityKey()}"
+        {if $connect->getCwidFunction()}
+            data-sizeid-cwid-function="{$connect->getCwidFunction()}"
+        {/if}
+></script>
