@@ -12,11 +12,6 @@ class ClientApi extends \SizeID\OAuth2\ClientApi
 		return $this->clientId;
 	}
 
-	public function getClientSecret()
-	{
-		return $this->clientSecret;
-	}
-
 	public function get($uri)
 	{
 		$response = $this->send(new Request('get', $uri));
