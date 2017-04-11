@@ -21,6 +21,10 @@ class EshopPlatformHelper
 		$this->clientApi = $clientApi;
 	}
 
+	/**
+	 * Checks connection to SizeID Business API.
+	 * @return boolean true - connection ok, false otherwise
+	 */
 	public function credentialsAreValid()
 	{
 		try {
@@ -35,11 +39,23 @@ class EshopPlatformHelper
 		}
 	}
 
+	/**
+	 * Calls https://business.sizeid.com/integration.business-api/client-advisor-buttons and return $.data as
+	 * array.
+	 * @return array
+	 */
 	public function getButtons()
 	{
 		return $this->clientApi->get('client/advisor-buttons');
 	}
 
+	/**
+	 * Calls https://business.sizeid.com/integration.business-api/client-advisor-buttons and return flat associative
+	 * array. associative array.
+	 * key = $.data.id
+	 * value = $.data.name
+	 * @return array
+	 */
 	public function getButtonPairs()
 	{
 		$result = $this->getButtons();
@@ -50,11 +66,23 @@ class EshopPlatformHelper
 		return $buttons;
 	}
 
+	/**
+	 * Calls https://business.sizeid.com/integration.business-api/active-size-chart-collection and return
+	 * $.data as array
+	 * @return array
+	 */
 	public function getActiveSizeCharts()
 	{
 		return $this->clientApi->get("client/active-size-charts?limit=1000");
 	}
 
+	/**
+	 * Calls https://business.sizeid.com/integration.business-api/active-size-chart-collection and return flat
+	 * associative array.
+	 * key = $.data.id
+	 * value = formatted label - e.g. Nike, Male, Upper Body, All garments, 39
+	 * @return array
+	 */
 	public function getActiveSizeChartsPairs()
 	{
 		$result = $this->getActiveSizeCharts();
@@ -104,6 +132,9 @@ class EshopPlatformHelper
 		throw  new InvalidStateException("Button '$id' not found!");
 	}
 
+	/**
+	 * @return array - languages supported by SizeID in ISO 639-1
+	 */
 	public function getAvailableLanguages()
 	{
 		return [
@@ -111,12 +142,18 @@ class EshopPlatformHelper
 		];
 	}
 
-	public function isSupportedLanguage($requiredLanguageIso)
+	/**
+	 * @param $language
+	 * @return bool true if supported, else otherwise
+	 */
+	public function isSupportedLanguage($language)
 	{
-		return in_array($requiredLanguageIso, $this->getAvailableLanguages());
+		return in_array($language, $this->getAvailableLanguages());
 	}
 
 	/**
+	 * Creates object representation of SizeID Connect script
+	 * (https://business.sizeid.com/integration.settings/#connect)
 	 * @return Connect
 	 */
 	public function createConnect()
@@ -126,6 +163,11 @@ class EshopPlatformHelper
 		return $connect;
 	}
 
+	/**
+	 * Renders SizeID Connect (https://business.sizeid.com/integration.settings/#connect) script to html.
+	 * @param Connect|NULL $connect - if null default configuration of connect will be used
+	 * @return html of connect
+	 */
 	public function renderConnect(Connect $connect = NULL)
 	{
 		if ($connect === NULL) {
@@ -135,6 +177,11 @@ class EshopPlatformHelper
 		return $connectRenderer->render($connect);
 	}
 
+	/**
+	 * Renders SizeID Button (https://business.sizeid.com/integration.advisor/#button-code) to html.
+	 * @param Button $button
+	 * @return html of button
+	 */
 	public function renderButton(Button $button)
 	{
 		if (!$this->isSupportedLanguage($button->getLanguage())) {

@@ -9,6 +9,9 @@ class ClientApi extends \SizeID\OAuth2\ClientApi
 
 	private $language = 'en';
 
+	/**
+	 * @param $language ISO 639-1 code of api response language
+	 */
 	public function setApiLanguage($language)
 	{
 		$this->language = $language;

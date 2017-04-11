@@ -2,21 +2,47 @@
 
 namespace SizeID\Helpers;
 
+/**
+ * Representation of https://business.sizeid.com/integration.settings/#button-code
+ * @package SizeID\Helpers
+ */
 class Button
 {
 
+	/**
+	 * @var integer
+	 */
 	private $id;
 
+	/**
+	 * @var integer - in px
+	 */
 	private $width;
 
+	/**
+	 * @var integer - in px
+	 */
 	private $height;
 
+	/**
+	 * @var integer - Size Chart Id
+	 */
 	private $sizeChart;
 
+	/**
+	 * @var string - ISO 639-1 of required language
+	 */
 	private $language;
 
+	/**
+	 * @var boolean - true show size table, false otherwise
+	 */
 	private $showSizeTable;
 
+	/**
+	 * @param array $template - create from api response
+	 * @return Button
+	 */
 	public static function fromTemplate(array $template)
 	{
 		$new = new static();
@@ -26,6 +52,9 @@ class Button
 		return $new;
 	}
 
+	/**
+	 * @return array - template for serialization
+	 */
 	public function getTemplate()
 	{
 		return [

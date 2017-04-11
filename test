@@ -1,0 +1,3 @@
+#!/bin/bash
+
+vendor/bin/tester tests/ -c tests/php.ini --coverage-src src/ --coverage tests/temp/coverage.html
