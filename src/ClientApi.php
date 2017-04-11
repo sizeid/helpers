@@ -7,6 +7,13 @@ use GuzzleHttp\Psr7\Request;
 class ClientApi extends \SizeID\OAuth2\ClientApi
 {
 
+	private $language = 'en';
+
+	public function setApiLanguage($language)
+	{
+		$this->language = $language;
+	}
+
 	public function getIdentityKey()
 	{
 		return $this->clientId;
@@ -14,7 +21,7 @@ class ClientApi extends \SizeID\OAuth2\ClientApi
 
 	public function get($uri)
 	{
-		$response = $this->send(new Request('get', $uri));
+		$response = $this->send(new Request('get', $uri, ['Accept-Language' => $this->language]));
 		return json_decode($response->getBody()->getContents(), TRUE)['data'];
 	}
 }
