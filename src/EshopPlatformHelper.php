@@ -4,7 +4,10 @@ namespace SizeID\Helpers;
 
 use GuzzleHttp\Exception\ClientException;
 use SizeID\Helpers\Exceptions\InvalidStateException;
-use SizeID\Helpers\Rendering\ButtonRenderer;
+use SizeID\Helpers\Rendering\ButtonHtmlFactory;
+use SizeID\Helpers\Rendering\ButtonHtmlFactoryInterface;
+use SizeID\Helpers\Rendering\ConnectHtmlFactory;
+use SizeID\Helpers\Rendering\ConnectHtmlFactoryInterface;
 use SizeID\Helpers\Rendering\ConnectRenderer;
 use SizeID\OAuth2\Api;
 
@@ -16,9 +19,31 @@ class EshopPlatformHelper
 	 */
 	private $clientApi;
 
-	public function __construct(ClientApi $clientApi)
+	/**
+	 * @var ConnectHtmlFactoryInterface
+	 */
+	private $connectHtmlFactory;
+
+	/**
+	 * @var ButtonHtmlFactoryInterface
+	 */
+	private $buttonHtmlFactory;
+
+	public function __construct(
+		ClientApi $clientApi,
+		ConnectHtmlFactoryInterface $connentHtmlFactory = NULL,
+		ButtonHtmlFactoryInterface $buttonHtmlFactory = NULL
+	)
 	{
 		$this->clientApi = $clientApi;
+		if ($connentHtmlFactory === NULL) {
+			$connentHtmlFactory = new ConnectHtmlFactory();
+		}
+		if ($buttonHtmlFactory === NULL) {
+			$buttonHtmlFactory = new ButtonHtmlFactory();
+		}
+		$this->connectHtmlFactory = $connentHtmlFactory;
+		$this->buttonHtmlFactory = $buttonHtmlFactory;
 	}
 
 	/**
@@ -129,7 +154,7 @@ class EshopPlatformHelper
 				return Button::fromTemplate($button);
 			}
 		}
-		throw  new InvalidStateException("Button '$id' not found!");
+		throw new InvalidStateException("Button '$id' not found!");
 	}
 
 	/**
@@ -173,8 +198,7 @@ class EshopPlatformHelper
 		if ($connect === NULL) {
 			$connect = $this->createConnect();
 		}
-		$connectRenderer = new ConnectRenderer();
-		return $connectRenderer->render($connect);
+		return (string)$this->connectHtmlFactory->create($connect);
 	}
 
 	/**
@@ -187,7 +211,6 @@ class EshopPlatformHelper
 		if (!$this->isSupportedLanguage($button->getLanguage())) {
 			$button->setLanguage(NULL);
 		}
-		$buttonRenderer = new ButtonRenderer();
-		return $buttonRenderer->render($button);
+		return (string)$this->buttonHtmlFactory->create($button);
 	}
 }
