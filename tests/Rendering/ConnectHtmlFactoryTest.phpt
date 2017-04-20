@@ -3,7 +3,6 @@
 namespace SizeID\Helpers\Rendering\Tests;
 
 use SizeID\Helpers\Connect;
-use SizeID\Helpers\Exceptions\InvalidStateException;
 use SizeID\Helpers\Rendering\ConnectHtmlFactory;
 use Tester\Assert;
 use Tester\TestCase;
@@ -21,7 +20,7 @@ class ConnectHtmlFactoryTest extends TestCase
 			function () use ($connectHtmlFactory, $connect) {
 				$connectHtmlFactory->create($connect);
 			},
-			InvalidStateException::class
+			'SizeID\Helpers\Exceptions\InvalidStateException'
 		);
 		$connect
 			->setIdentityKey('ik')

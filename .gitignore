@@ -4,3 +4,4 @@ config.php
 temp
 output
 coverage.html
+coverage.xml

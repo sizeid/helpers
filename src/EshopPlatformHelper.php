@@ -57,7 +57,7 @@ class EshopPlatformHelper
 			return TRUE;
 		} catch (ClientException $ex) {
 			$response = $ex->getResponse();
-			if ($response->getStatusCode() === 401 && $response->getHeaderLine(Api::SIZEID_ERROR_CODE_HEADER) == 104) {
+			if ($response->getStatusCode() === 401 && $response->getHeader(Api::SIZEID_ERROR_CODE_HEADER) == 104) {
 				return FALSE;
 			}
 			throw $ex;

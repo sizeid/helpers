@@ -3,7 +3,6 @@
 namespace SizeID\Helpers\Rendering\Tests;
 
 use SizeID\Helpers\Button;
-use SizeID\Helpers\Exceptions\InvalidStateException;
 use SizeID\Helpers\Rendering\ButtonHtmlFactory;
 use Tester\Assert;
 use Tester\TestCase;
@@ -27,7 +26,7 @@ class ButtonHtmlFactoryTest extends TestCase
 			function () use ($buttonHtmlFactory, $button) {
 				$buttonHtmlFactory->create($button);
 			},
-			InvalidStateException::class
+			'SizeID\Helpers\Exceptions\InvalidStateException'
 		);
 		$button->setSizeChart(42);
 		Assert::equal(

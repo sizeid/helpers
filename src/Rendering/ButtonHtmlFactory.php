@@ -2,7 +2,6 @@
 
 namespace SizeID\Helpers\Rendering;
 
-use Nette\Utils\Html;
 use SizeID\Helpers\Button;
 use SizeID\Helpers\Exceptions\InvalidStateException;
 
@@ -15,7 +14,7 @@ class ButtonHtmlFactory implements ButtonHtmlFactoryInterface
 	public function create(Button $button)
 	{
 		if (!$button->getSizeChart()) {
-			throw new InvalidStateException(Button::class . "::sizeChart property is required!");
+			throw new InvalidStateException('Button::sizeChart property is required!');
 		}
 		$attributes = [
 			'class' => 'SizeID-button',

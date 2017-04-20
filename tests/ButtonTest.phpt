@@ -21,7 +21,7 @@ class ButtonTest extends TestCase
 			],
 		];
 		$button = Button::fromTemplate($template);
-		Assert::type(Button::class, $button);
+		Assert::type('SizeID\Helpers\Button', $button);
 		Assert::equal($template, $button->getTemplate());
 	}
 }

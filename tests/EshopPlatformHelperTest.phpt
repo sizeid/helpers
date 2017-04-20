@@ -2,15 +2,10 @@
 
 namespace SizeID\Helpers\Tests;
 
-use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Message\Response;
 use Mockery as m;
 use SizeID\Helpers\Button;
-use SizeID\Helpers\ClientApi;
 use SizeID\Helpers\EshopPlatformHelper;
-use SizeID\Helpers\Exceptions\InvalidStateException;
-use SizeID\Helpers\Rendering\ButtonHtmlFactoryInterface;
-use SizeID\Helpers\Rendering\ConnectHtmlFactoryInterface;
 use SizeID\OAuth2\Api;
 use Tester\Assert;
 use Tester\TestCase;
@@ -22,13 +17,13 @@ class EshopPlatformHelperTest extends TestCase
 
 	public function testCredentialsAreValid()
 	{
-		$clientApi = m::mock(ClientApi::class);
+		$clientApi = m::mock('SizeID\Helpers\ClientApi');
 		$clientApi
 			->shouldReceive('acquireNewAccessToken')
 			->once();
 		$helper = new EshopPlatformHelper($clientApi);
 		Assert::true($helper->credentialsAreValid());
-		$exception = m::mock(ClientException::class);
+		$exception = m::mock('GuzzleHttp\Exception\ClientException');
 		$response = new Response(401, [Api::SIZEID_ERROR_CODE_HEADER => 104]);
 		$exception
 			->shouldReceive('getResponse')
@@ -39,7 +34,7 @@ class EshopPlatformHelperTest extends TestCase
 			->andThrow($exception)
 			->once();
 		Assert::false($helper->credentialsAreValid());
-		$exception = m::mock(ClientException::class);
+		$exception = m::mock('GuzzleHttp\Exception\ClientException');
 		$response = new Response(403);
 		$exception
 			->shouldReceive('getResponse')
@@ -53,13 +48,13 @@ class EshopPlatformHelperTest extends TestCase
 			function () use ($helper) {
 				$helper->credentialsAreValid();
 			},
-			ClientException::class
+			'GuzzleHttp\Exception\ClientException'
 		);
 	}
 
 	public function testGetButtonPairs()
 	{
-		$clientApi = m::mock(ClientApi::class);
+		$clientApi = m::mock('SizeID\Helpers\ClientApi');
 		$clientApi->shouldReceive('get')
 			->andReturn($this->createButtonResponse());
 		$helper = new EshopPlatformHelper($clientApi);
@@ -68,7 +63,7 @@ class EshopPlatformHelperTest extends TestCase
 
 	public function testGetActiveSizeChartsPairs()
 	{
-		$clientApi = m::mock(ClientApi::class);
+		$clientApi = m::mock('SizeID\Helpers\ClientApi');
 		$clientApi->shouldReceive('get')
 			->andReturn(
 				[
@@ -94,34 +89,34 @@ class EshopPlatformHelperTest extends TestCase
 
 	public function testGetDefaultButton()
 	{
-		$clientApi = m::mock(ClientApi::class);
+		$clientApi = m::mock('SizeID\Helpers\ClientApi');
 		$clientApi
 			->shouldReceive('get')
 			->andReturn($this->createButtonResponse());
 		$helper = new EshopPlatformHelper($clientApi);
-		Assert::type(Button::class, $helper->getDefaultButton());
+		Assert::type('SizeID\Helpers\Button', $helper->getDefaultButton());
 	}
 
 	public function testGetButtonById()
 	{
-		$clientApi = m::mock(ClientApi::class);
+		$clientApi = m::mock('SizeID\Helpers\ClientApi');
 		$clientApi
 			->shouldReceive('get')
 			->andReturn($this->createButtonResponse());
 		$helper = new EshopPlatformHelper($clientApi);
-		Assert::type(Button::class, $helper->getButtonById(1));
+		Assert::type('SizeID\Helpers\Button', $helper->getButtonById(1));
 		Assert::exception(
 			function () use ($helper) {
 				$helper->getButtonById(2);
 			},
-			InvalidStateException::class,
+			'SizeID\Helpers\Exceptions\InvalidStateException',
 			"Button '2' not found!"
 		);
 	}
 
 	public function testIsSupportedLanguage()
 	{
-		$clientApi = m::mock(ClientApi::class);
+		$clientApi = m::mock('SizeID\Helpers\ClientApi');
 		$helper = new EshopPlatformHelper($clientApi);
 		Assert::false($helper->isSupportedLanguage('xx'));
 		Assert::true($helper->isSupportedLanguage('cs'));
@@ -129,11 +124,11 @@ class EshopPlatformHelperTest extends TestCase
 
 	public function testRenderConnect()
 	{
-		$clientApi = m::mock(ClientApi::class);
+		$clientApi = m::mock('SizeID\Helpers\ClientApi');
 		$clientApi
 			->shouldReceive('getIdentityKey')
 			->andReturn('ik');
-		$connectHtmlFactory = m::mock(ConnectHtmlFactoryInterface::class);
+		$connectHtmlFactory = m::mock('SizeID\Helpers\Rendering\ConnectHtmlFactoryInterface');
 		$connectHtmlFactory
 			->shouldReceive('create')
 			->andReturn('');
@@ -143,8 +138,8 @@ class EshopPlatformHelperTest extends TestCase
 
 	public function testRenderButton()
 	{
-		$clientApi = m::mock(ClientApi::class);
-		$buttonHtmlFactory = m::mock(ButtonHtmlFactoryInterface::class);
+		$clientApi = m::mock('SizeID\Helpers\ClientApi');
+		$buttonHtmlFactory = m::mock('SizeID\Helpers\Rendering\ButtonHtmlFactoryInterface');
 		$buttonHtmlFactory
 			->shouldReceive('create')
 			->andReturn('');

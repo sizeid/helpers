@@ -2,7 +2,7 @@
 
 namespace SizeID\Helpers;
 
-use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Message\Request;
 
 class ClientApi extends \SizeID\OAuth2\ClientApi
 {

@@ -10,8 +10,7 @@
     }
   ],
   "require": {
-    "sizeid/oauth2": "^1.0",
-    "nette/utils": "^2.4"
+    "sizeid/oauth2": "dev-php5.4"
   },
   "autoload": {
     "psr-4": {

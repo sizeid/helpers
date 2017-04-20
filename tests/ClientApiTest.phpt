@@ -2,9 +2,8 @@
 
 namespace SizeID\Helpers\Tests;
 
-use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Message\Response;
 use Mockery as m;
-use SizeID\Helpers\ClientApi;
 use Tester\Assert;
 use Tester\TestCase;
 
@@ -15,17 +14,20 @@ class ClientApiTest extends TestCase
 
 	public function testGet()
 	{
-		$clientApi = m::mock(ClientApi::class);
+		$clientApi = m::mock('SizeID\Helpers\ClientApi');
 		$clientApi->makePartial();
 		$clientApi->setApiLanguage('xx');
 		$clientApi->getIdentityKey();
-		$response = new Response(200, [], '{"data": {}}');
+		$stream = m::mock('GuzzleHttp\Stream\StreamInterface');
+		$stream
+			->shouldReceive('getContents')
+			->andReturn('{"data": {}}');
+		$response = new Response(200, [], $stream);
 		$clientApi
 			->shouldReceive('send')
 			->andReturn($response);
 		Assert::equal([], $clientApi->get('api'));
 	}
-
 }
 
 $test = new ClientApiTest();
