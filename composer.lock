@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ae41c512777cd784dea8b0b7a85f7fa3",
-    "content-hash": "1609afbc4e6c020c05e9b5efa812de6e",
+    "hash": "eed94e18efe081d03dbd25debc6bbb89",
+    "content-hash": "563f71fb2fed7bcbea3f7d9d126561d8",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -212,12 +212,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sizeid/oauth2.git",
-                "reference": "ab13371965ba4fcb8775d395f23ab3f4b797675a"
+                "reference": "57f14aa901f04fbf7842da415c81f9b22057a6c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sizeid/oauth2/zipball/ab13371965ba4fcb8775d395f23ab3f4b797675a",
-                "reference": "ab13371965ba4fcb8775d395f23ab3f4b797675a",
+                "url": "https://api.github.com/repos/sizeid/oauth2/zipball/57f14aa901f04fbf7842da415c81f9b22057a6c1",
+                "reference": "57f14aa901f04fbf7842da415c81f9b22057a6c1",
                 "shasum": ""
             },
             "require": {
@@ -248,7 +248,7 @@
                 }
             ],
             "description": "Package for communication with SizeID Business API.",
-            "time": "2017-04-20 10:54:28"
+            "time": "2017-04-20 12:17:08"
         }
     ],
     "packages-dev": [
@@ -554,6 +554,8 @@
     },
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": ">=5.4"
+    },
     "platform-dev": []
 }
