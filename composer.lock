@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eed94e18efe081d03dbd25debc6bbb89",
-    "content-hash": "563f71fb2fed7bcbea3f7d9d126561d8",
+    "hash": "d0c3f565b2ba3c8eb44489fb50b582a4",
+    "content-hash": "28cfa95d3fe1c9a12cddb06837c8dd7f",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -208,16 +208,16 @@
         },
         {
             "name": "sizeid/oauth2",
-            "version": "dev-php5.4",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sizeid/oauth2.git",
-                "reference": "57f14aa901f04fbf7842da415c81f9b22057a6c1"
+                "reference": "56cfe5f7b9f59d7e07ca411ba00d987a69e91124"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sizeid/oauth2/zipball/57f14aa901f04fbf7842da415c81f9b22057a6c1",
-                "reference": "57f14aa901f04fbf7842da415c81f9b22057a6c1",
+                "url": "https://api.github.com/repos/sizeid/oauth2/zipball/56cfe5f7b9f59d7e07ca411ba00d987a69e91124",
+                "reference": "56cfe5f7b9f59d7e07ca411ba00d987a69e91124",
                 "shasum": ""
             },
             "require": {
@@ -248,7 +248,7 @@
                 }
             ],
             "description": "Package for communication with SizeID Business API.",
-            "time": "2017-04-20 12:17:08"
+            "time": "2017-04-20 14:31:15"
         }
     ],
     "packages-dev": [
@@ -368,12 +368,12 @@
             "version": "0.9.9",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mockery/mockery.git",
+                "url": "https://github.com/padraic/mockery.git",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/6fdb61243844dc924071d3404bb23994ea0b6856",
                 "reference": "6fdb61243844dc924071d3404bb23994ea0b6856",
                 "shasum": ""
             },
@@ -549,9 +549,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "sizeid/oauth2": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
