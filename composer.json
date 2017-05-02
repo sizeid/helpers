@@ -11,7 +11,7 @@
   ],
   "require": {
     "php": ">=5.4",
-    "sizeid/oauth2": "dev-php5.4"
+    "sizeid/oauth2": "^1.1"
   },
   "autoload": {
     "psr-4": {
