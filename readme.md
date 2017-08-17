@@ -1,6 +1,6 @@
 # SizeID Helpers
-[![Build Status](https://travis-ci.org/sizeid/helpers.svg?branch=master)](https://travis-ci.org/sizeid/helpers.svg?branch=master)
-[![Coverage Status](https://coveralls.io/repos/github/sizeid/helpers/badge.svg?branch=master)](https://coveralls.io/github/sizeid/helpers?branch=master)
+[![Build Status](https://travis-ci.org/sizeid/helpers.svg?branch=master)](https://travis-ci.org/sizeid/helpers)
+[![Coverage Status](https://coveralls.io/repos/github/sizeid/helpers/badge.svg?branch=master)](https://coveralls.io/github/sizeid/helpers)
 
 Package for SizeID Advisor integration into e-shop platforms.
 
