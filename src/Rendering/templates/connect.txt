@@ -1,0 +1,7 @@
+<script>
+!function(e,t,n){SizeId={version:"2.0",identityKey:t,config:n};
+var i,c;i=document.createElement("script"),i.src=e,i.type="text/javascript",
+i.async=1,i.onload=function(){SizeId.init()},
+c=document.getElementsByTagName("script")[0],c.parentNode.insertBefore(i,c)}
+([PARAMS])
+</script>

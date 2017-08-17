@@ -24,9 +24,10 @@ class ConnectHtmlFactoryTest extends TestCase
 		);
 		$connect
 			->setIdentityKey('ik')
-			->setCwidFunction('cwid');
+			->setCwidFunction('function(d){console.log(d);}');
+
 		Assert::equal(
-			'<script id="SizeID-script" src="//connect.sizeid.com" data-sizeid-identity-key="ik" data-sizeid-cwid-function="cwid"></script>',
+			file_get_contents(__DIR__.'/connect.txt'),
 			(string)$connectHtmlFactory->create($connect)
 		);
 	}

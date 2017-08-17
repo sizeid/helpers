@@ -16,15 +16,15 @@ class ConnectHtmlFactory implements ConnectHtmlFactoryInterface
 		if (!$connect->getIdentityKey()) {
 			throw new InvalidStateException('Connect::identityKey property is required!');
 		}
-		$attributes =
-			[
-				'id' => 'SizeID-script',
-				'src' => '//connect.sizeid.com',
-				'data-sizeid-identity-key' => $connect->getIdentityKey(),
-			];
+		$template = file_get_contents(__DIR__ . '/templates/connect.txt');
+		$replace = "'//connect.sizeid.com', '{$connect->getIdentityKey()}'";
 		if ($connect->getCwidFunction()) {
-			$attributes['data-sizeid-cwid-function'] = $connect->getCwidFunction();
+			$replace.= ", {cwidCallback: {$connect->getCwidFunction()}}";
 		}
-		return Html::el('script', $attributes);
+		return str_replace(
+			'[PARAMS]',
+			$replace,
+			$template
+		);
 	}
 }
