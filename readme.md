@@ -10,7 +10,7 @@ Package for SizeID Advisor integration into e-shop platforms.
 
 * verify client credentials
 * get and format active size charts
-* get and format available buttons styles
+* get and format available button styles
 * get available languages
 * render SizeID Button code
 * render SizeID Connect code
